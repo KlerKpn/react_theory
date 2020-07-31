@@ -36,9 +36,21 @@ class App extends Component  {
     return (
       <div style={divStyle} className="App">
         <h1>{this.state.pageTitle}</h1>
-        <input type={'text'} onChange={this.handlerInput} />
+        <input type='text' onChange={this.handlerInput} />
         <button onClick={this.titleHandler.bind(this,'Changed!')}>Click</button>
-        <Car 
+
+        {this.state.cars.map((car, index)=>{
+          return (
+            <Car 
+            key ={index}
+            name = {car.name}
+            year = {car.year}
+            onChanger={this.titleHandler.bind(this, car.name)}
+            />)
+        })}
+
+      
+        {/* <Car 
           name={cars[0].name}
           year={cars[0].year}
           onChanger={this.titleHandler.bind(this, cars[0].name)} // Оптимизация на больших проектах recomended
@@ -54,7 +66,7 @@ class App extends Component  {
           onChanger={() => this.titleHandler(cars[2].name)} 
         >
              <p style={{color:'yellow'}}>COLOR</p>
-        </Car>
+        </Car> */}
       </div>
     );
   }
