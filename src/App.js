@@ -14,11 +14,11 @@ class App extends Component  {
     pageTitle: 'React components'
   }
 
-  titleHandler = () => {
-    const oldtitle = this.state.pageTitle
-    console.log(oldtitle);
+  titleHandler = (newTitle) => {
+   // const oldtitle = this.state.pageTitle
+   
     this.setState({
-      pageTitle: 'Ebal wash react'
+      pageTitle: newTitle
     })
   }
   render(){
@@ -29,19 +29,22 @@ class App extends Component  {
     return (
       <div style={divStyle} className="App">
         <h1>{this.state.pageTitle}</h1>
-        <button onClick={this.titleHandler}>Click</button>
+        <button onClick={this.titleHandler.bind(this,'Changed!')}>Click</button>
         <Car 
           name={cars[0].name}
           year={cars[0].year}
-          onChanger={this.titleHandler} 
+          onChanger={this.titleHandler.bind(this, cars[0].name)} // Оптимизация на больших проектах recomended
         /> 
         <Car
           name={cars[1].name} 
           year={cars[1].year}
+          onChanger={() => this.titleHandler(cars[1].name)}       // плохая оптимизация на больших преоктах  
         /> 
         <Car 
           name={cars[2].name} 
-          year={cars[2].year}>
+          year={cars[2].year}
+          onChanger={() => this.titleHandler(cars[2].name)} 
+        >
              <p style={{color:'yellow'}}>COLOR</p>
         </Car>
       </div>
