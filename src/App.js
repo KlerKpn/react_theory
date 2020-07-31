@@ -11,7 +11,8 @@ class App extends Component  {
       {name: 'Audi', year: 2016},
       {name: 'Mazda', year: 2010}
     ],
-    pageTitle: 'React components'
+    pageTitle: 'React components',
+    showCars: false
   }
 
   titleHandler = (newTitle) => {
@@ -22,12 +23,12 @@ class App extends Component  {
     })
   }
 
-  handlerInput = (event) => {
+  toggleCars = ()=>{
     this.setState({
-      pageTitle: event.target.value
+      showCars : !this.state.showCars
     })
   }
-
+ 
   render(){
     const divStyle = {
       textAlign: 'center'
@@ -36,37 +37,20 @@ class App extends Component  {
     return (
       <div style={divStyle} className="App">
         <h1>{this.state.pageTitle}</h1>
-        <input type='text' onChange={this.handlerInput} />
-        <button onClick={this.titleHandler.bind(this,'Changed!')}>Click</button>
+        <button onClick={this.toggleCars}>Click</button>
 
-        {this.state.cars.map((car, index)=>{
-          return (
-            <Car 
-            key ={index}
-            name = {car.name}
-            year = {car.year}
-            onChanger={this.titleHandler.bind(this, car.name)}
-            />)
-        })}
-
-      
-        {/* <Car 
-          name={cars[0].name}
-          year={cars[0].year}
-          onChanger={this.titleHandler.bind(this, cars[0].name)} // Оптимизация на больших проектах recomended
-        /> 
-        <Car
-          name={cars[1].name} 
-          year={cars[1].year}
-          onChanger={() => this.titleHandler(cars[1].name)}       // плохая оптимизация на больших преоктах  
-        /> 
-        <Car 
-          name={cars[2].name} 
-          year={cars[2].year}
-          onChanger={() => this.titleHandler(cars[2].name)} 
-        >
-             <p style={{color:'yellow'}}>COLOR</p>
-        </Car> */}
+        { this.state.showCars ?
+            this.state.cars.map((car, index)=>{
+            return (
+              <Car 
+              key ={index}
+              name = {car.name}
+              year = {car.year}
+              onChanger={this.titleHandler.bind(this, car.name)}
+              />)
+            })
+          : null  
+        }
       </div>
     );
   }
