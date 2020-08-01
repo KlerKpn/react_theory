@@ -15,8 +15,10 @@ import React from 'react'
 export default props => (
 <div style={{
     border: '1px solid black',
-    margin: '10px',
-    padding: '20px'
+    marginBottom: '10px',
+    padding: '20px',
+    boxShadow:'0 4px 5px 0 rgba(0, 0, 0, .14)',
+    borderRadius: 5
 }}>
     <p>{props.name}</p>
     <strong>{props.year}</strong>
