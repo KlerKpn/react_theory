@@ -13,11 +13,16 @@ import React from 'react'
 // )
 
 export default props => (
-<div>
+<div style={{
+    border: '1px solid black',
+    margin: '10px',
+    padding: '20px'
+}}>
     <p>{props.name}</p>
     <strong>{props.year}</strong>
     <br></br>
     {/* <span>{Math.floor(Math.random() * 100)}</span> */}
-    <button onClick={props.onChanger}>Click me</button>
+    <input type='text' onChange={props.onChangeName} value={props.name} />
+    <button onClick={props.onDelete}>Delete</button>
     {props.children}
 </div>)
