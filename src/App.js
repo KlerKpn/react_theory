@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.module.scss';
 import Car from './Car/Car'
 
 
@@ -57,7 +57,8 @@ class App extends Component  {
     }  
   
     return (
-      <div style={divStyle} className="App">
+      <div style={divStyle} className={classes.App}>
+        {/* className={classes['App-Header']}  для дефиса*/}
         <h1>{ this.state.pageTitle }</h1>
         <button onClick={ this.toggleCars }>Click</button>
         <div style={{

@@ -1,6 +1,6 @@
 import React from 'react'
 import Radium from 'radium'
-import './car.css'
+import './car.scss'
 
 // function car(){
 //     return (
