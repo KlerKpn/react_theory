@@ -12,8 +12,8 @@ class App extends Component  {
     this.state = {
       cars: [
         {name: 'Ford', year: 2018},
-        {name: 'Audi', year: 2016},
-        {name: 'Mazda', year: 2010}
+        // {name: 'Audi', year: 2016},
+        // {name: 'Mazda', year: 2010}
       ],
       pageTitle: 'React components',
       showCars: false
@@ -40,12 +40,12 @@ class App extends Component  {
     cars.splice(index, 1)
     this.setState({cars})    
   }
-  componentWillMount(){
-    console.log('call component will mount'); // dont use react is not ready
-  }
-  componentDidMount(){
-    console.log('call component did mount');  // u can use to execute state
-  }
+  // componentWillMount(){
+  //   console.log('call component will mount'); // dont use react is not ready
+  // }
+  // componentDidMount(){
+  //   console.log('call component did mount');  // u can use to execute state
+  // }
   render(){
     console.log('call render');
     const divStyle = {
