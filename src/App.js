@@ -5,16 +5,20 @@ import Car from './Car/Car'
 
 
 class App extends Component  {
-  state = {
-    cars: [
-      {name: 'Ford', year: 2018},
-      {name: 'Audi', year: 2016},
-      {name: 'Mazda', year: 2010}
-    ],
-    pageTitle: 'React components',
-    showCars: false
-  }
 
+  constructor(props){
+    console.log('call constructor')
+    super()
+    this.state = {
+      cars: [
+        {name: 'Ford', year: 2018},
+        {name: 'Audi', year: 2016},
+        {name: 'Mazda', year: 2010}
+      ],
+      pageTitle: 'React components',
+      showCars: false
+    }
+  }
 
   toggleCars = ()=>{
     this.setState({
@@ -36,7 +40,14 @@ class App extends Component  {
     cars.splice(index, 1)
     this.setState({cars})    
   }
+  componentWillMount(){
+    console.log('call component will mount'); // dont use react is not ready
+  }
+  componentDidMount(){
+    console.log('call component did mount');  // u can use to execute state
+  }
   render(){
+    console.log('call render');
     const divStyle = {
       textAlign: 'center'
     }
@@ -59,7 +70,8 @@ class App extends Component  {
     return (
       <div style={divStyle} className={classes.App}>
         {/* className={classes['App-Header']}  для дефиса*/}
-        <h1>{ this.state.pageTitle }</h1>
+        {/* <h1>{ this.state.pageTitle }</h1> */}
+        <h1>{this.props.title}</h1>
         <button onClick={ this.toggleCars }>Click</button>
         <div style={{
           width: 400,
