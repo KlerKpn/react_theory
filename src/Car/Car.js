@@ -29,9 +29,9 @@ class Car extends React.Component {
         console.log('componentWillUnmount');  // при удалении
     }
     render(){
-        if(Math.random() > 0.7){
-            throw new Error ('xui tebe a ne stabil`nost')
-        }
+        // if(Math.random() > 0.7){
+        //     throw new Error ('xui tebe a ne stabil`nost')
+        // }
         console.log('Car render')
         const inputClasses = ['input']
         if (this.props.name !==""){ 
