@@ -9,11 +9,12 @@ class Car extends React.Component {
     constructor(props){
         super()
 
+        this.indexRef = React.createRef()
     }
    
     componentDidMount(){
-        if(this.props.index === 1){
-            this.indexref.focus()
+        if(this.props.index === 0){
+            this.indexRef.current.focus()
         }
     }
     render(){
@@ -39,7 +40,7 @@ class Car extends React.Component {
             <br />
             <input 
                 type='text'
-                ref={indexRef => this.indexref = indexRef}
+                ref={this.indexRef}
                 onChange={this.props.onChangeName} 
                 value={this.props.name}
                 className={inputClasses.join(' ')}
