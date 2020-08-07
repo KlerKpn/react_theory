@@ -6,9 +6,14 @@ class Counter extends Component{
         count: 0
     }
     addCount = ()=>{
-        this.setState({
-            count: this.state.count +1
-        })
+        // this.setState({
+        //     count: this.state.count +1
+        // })
+        this.setState((prevState)=> {
+            return {                            // безопасное изменение state 
+                count: prevState.count +1
+            }
+        })  
     }
     render(){
         // return(    !!!  ДЛЯ ЛОХОВ
