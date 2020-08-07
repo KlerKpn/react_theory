@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import classes from './App.module.scss';
 import Car from './Car/Car'
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
 
 
 
 class App extends Component  {
 
   constructor(props){
-    console.log('call constructor')
     super()
     this.state = {
       cars: [
         {name: 'Ford', year: 2018},
-        // {name: 'Audi', year: 2016},
-        // {name: 'Mazda', year: 2010}
+        {name: 'Audi', year: 2016},
+        {name: 'Mazda', year: 2010}
       ],
       pageTitle: 'React components',
       showCars: false
@@ -47,7 +47,7 @@ class App extends Component  {
   //   console.log('call component did mount');  // u can use to execute state
   // }
   render(){
-    console.log('call render');
+
     const divStyle = {
       textAlign: 'center'
     }
@@ -56,14 +56,16 @@ class App extends Component  {
     if (this.state.showCars){
       cars = this.state.cars.map((car, index)=>{
       return (
-        <Car 
-        key ={index}
-        name = {car.name}
-        year = {car.year}
-        onDelete = {this.onDelete.bind(this, index)}
-        onChangeName={event => this.onChangeName(event.target.value, index)}
-        // {this.onChangeName.bind(this, this.target, index)}
-        />)
+        <ErrorBoundary key ={index}>
+          <Car 
+          name = {car.name}
+          year = {car.year}
+          onDelete = {this.onDelete.bind(this, index)}
+          onChangeName={event => this.onChangeName(event.target.value, index)}
+          // {this.onChangeName.bind(this, this.target, index)}
+          />
+          </ErrorBoundary>
+          )
       }) 
     }  
   

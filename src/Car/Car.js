@@ -2,33 +2,36 @@ import React from 'react'
 // import Radium from 'radium'
 import './car.scss'
 
-// function car(){
-//     return (
-//         <h2>Test h1</h2>
-//     )
-// }
-
-// const car = () => (
-// <div>Test h1
-//     <strong>simple text</strong>
-// </div>
-// )
 class Car extends React.Component {
 
-    componentWillReceiveProps(nextProps){
-       console.log('componentWillReceiveProps :', nextProps);
-    }
-    shouldComponentUpdate(nextProps, nextState){
-        console.log('shouldComponentUpdate', nextProps, nextState);  // оптимизация
-        return nextProps.name.trim() !== this.props.name.trim()
-    }
-    componentWillUpdate(nextProps, nextState){
-        console.log('componentWillUpdate', nextProps, nextState);
+    // componentWillReceiveProps(nextProps){
+    //    console.log('componentWillReceiveProps :', nextProps);   // сихрон local state(old)
+    // }
+    // shouldComponentUpdate(nextProps, nextState){
+    //     console.log('shouldComponentUpdate', nextProps, nextState); 
+    //     return nextProps.name.trim() !== this.props.name.trim()    // оптимизация   if true перперисовываем компонент
+    // }
+    // componentWillUpdate(nextProps, nextState){                       
+    //     console.log('componentWillUpdate', nextProps, nextState);        // знаем что компонент будет изменен
+    // }                                                                    // готовимся к изменению
+
+    static getDerivedStateFromProps(nextProps, prevState){
+        console.log('Car  getDerivedStateFromProps ', nextProps, prevState)
+        return prevState
     }
     componentDidUpdate(){
         console.log("componentDidUpdate");
     }
+    getSnapshotBeforeUpdate(kk){
+        console.log('getSnapshotBeforeUpdate',kk);  // ПОЛУЧАЕМ ДОМ ДЕРЕВО ДО ОБНОВЛЕНИЯ
+    }
+    componentWillUnmount(){
+        console.log('componentWillUnmount');  // при удалении
+    }
     render(){
+        if(Math.random() > 0.7){
+            throw new Error ('xui tebe a ne stabil`nost')
+        }
         console.log('Car render')
         const inputClasses = ['input']
         if (this.props.name !==""){ 
