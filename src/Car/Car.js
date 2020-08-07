@@ -6,7 +6,16 @@ import propTypes from 'prop-types'
 
 class Car extends React.Component {
 
+    constructor(props){
+        super()
+
+    }
    
+    componentDidMount(){
+        if(this.props.index === 1){
+            this.indexref.focus()
+        }
+    }
     render(){
        
         console.log('Car render')
@@ -29,10 +38,11 @@ class Car extends React.Component {
             <strong>{this.props.year}</strong>
             <br />
             <input 
-            type='text'
-            onChange={this.props.onChangeName} 
-            value={this.props.name}
-            className={inputClasses.join(' ')}
+                type='text'
+                ref={indexRef => this.indexref = indexRef}
+                onChange={this.props.onChangeName} 
+                value={this.props.name}
+                className={inputClasses.join(' ')}
              />
             <button onClick={this.props.onDelete}>Delete</button>
             {this.props.children}
